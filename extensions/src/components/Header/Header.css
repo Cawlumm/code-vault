@@ -1,0 +1,110 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    min-height: 60px;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    z-index: 1000; /* higher so it stays above other elements */
+}
+
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.header-logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    transform: scale(1.6);
+    transform-origin: left center;
+    margin-left: -2px;
+}
+
+.header-title {
+    flex: 1;
+    text-align: center;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Log out / Options buttons */
+.header-link {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.header-link:hover {
+    color: var(--color-primary-alt);
+    background: rgba(79, 139, 255, 0.1);
+}
+
+/* Back button (for editor) */
+.back-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.back-btn:hover {
+    color: var(--color-primary);
+    background: rgba(79, 139, 255, 0.1);
+}
+
+.new-snippet {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.new-snippet:hover {
+    background: rgba(79, 139, 255, 0.1);
+    border-color: var(--color-primary);
+}
+
+.new-snippet-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(114, 105, 255, 0.4));
+}

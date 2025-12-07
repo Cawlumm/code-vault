@@ -1,0 +1,110 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 56px;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    z-index: 900;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+/* Left text */
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-text {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+/* Button Container */
+.footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Base button style */
+.footer-link {
+    appearance: none;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    border-radius: 2px;
+    padding: 6px 12px;
+    max-width: 70px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    transition:
+            background 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease,
+            box-shadow 0.15s ease;
+}
+
+.footer-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* Primary button (Save) */
+.footer-link.primary {
+    background: var(--gradient-primary);
+    border-color: transparent;
+    color: #fff;
+}
+
+.footer-link.primary:hover {
+    filter: brightness(1.1);
+}
+
+/* Danger delete button — icon only */
+.footer-link.danger {
+    padding: 6px;
+    min-width: 34px;
+    width: 34px;
+    height: 34px;
+
+    border-radius: 8px;
+    background: rgba(255, 77, 77, 0.18);
+    border-color: rgba(255, 77, 77, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff4d4d;
+}
+
+.footer-link.danger:hover {
+    background: rgba(255, 77, 77, 0.25);
+    border-color: #ff4d4d;
+    color: #ff6b6b;
+    box-shadow: 0 2px 6px rgba(255, 77, 77, 0.25);
+}
+
+/* Icon */
+.footer-icon {
+    width: 18px;
+    height: 18px;
+}

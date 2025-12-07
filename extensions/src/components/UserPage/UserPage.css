@@ -1,0 +1,162 @@
+.user-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.5rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+/* Header */
+.user-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.4px;
+}
+
+/* Account Cards */
+.account-card {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--color-surface);
+    border-radius: 6px;
+    padding: 0.25rem 0.4rem;
+    transition: background 0.2s;
+    min-height: 40px; /* smaller height */
+}
+
+.account-card.active {
+    /*background: rgba(79, 139, 255, 0.12);*/
+    border-left: 2px solid var(--color-primary);
+}
+
+/* Avatars */
+.avatar-large,
+.avatar-small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.avatar-large {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+}
+
+.avatar-small {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+}
+
+/* Account Info */
+.account-info {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.account-info h4 {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.muted {
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+/* Status */
+.status {
+    font-size: 0.65rem;
+    padding: 0 4px;
+    border-radius: 4px;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+.status.unlocked {
+    background: rgba(79, 139, 255, 0.15);
+    color: var(--color-primary);
+}
+
+/* Buttons */
+.outline-btn {
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+    padding: 0.2rem 0.45rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    line-height: 1;
+    transition: border-color 0.2s, background 0.2s;
+    white-space: nowrap;
+}
+
+.outline-btn:hover {
+    border-color: var(--color-primary);
+}
+
+.outline-btn.danger {
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+/* Add Account Button */
+.footer-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.add-account-btn {
+    width: 100%;
+    background: none;
+    color: var(--color-primary);
+    border: 1px dashed var(--color-primary);
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-account-btn:hover {
+    background: rgba(79, 139, 255, 0.08);
+}
+
+/* Subtle Fade Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

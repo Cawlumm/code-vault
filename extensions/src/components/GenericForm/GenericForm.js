@@ -1,0 +1,7 @@
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { CodeEditor } from "@/components/CodeEditor/CodeEditor";
+import { FormSection } from "@/components/FromSection/FormSection";
+import { FormField } from "@/components/FormField/FormField";
+export const GenericForm = ({ schema, values, onChange, }) => (_jsx(_Fragment, { children: schema.map((section) => (_jsx(FormSection, { title: section.section, children: section.fields.map((f) => (_jsx(FormField, { label: f.label, children: f.type === "code" ? (_jsx(CodeEditor, { value: values[f.name] || "", language: values.language || "javascript", readOnly: f.disabled, onChange: (val) => onChange({
+                    target: { name: f.name, value: val }
+                }) })) : f.type === "textarea" ? (_jsx("textarea", { name: f.name, rows: 6, value: values[f.name] || "", placeholder: f.placeholder, onChange: onChange, readOnly: f.disabled })) : f.type === "select" ? (_jsxs("select", { name: f.name, value: values[f.name] || "", onChange: onChange, disabled: f.disabled, children: [_jsx("option", { value: "", children: "Select..." }), f.options?.map((opt) => (_jsx("option", { value: opt, children: opt }, opt)))] })) : (_jsx("input", { type: "text", name: f.name, value: values[f.name] || "", placeholder: f.placeholder, onChange: onChange, disabled: f.disabled })) }, f.name))) }, section.section))) }));

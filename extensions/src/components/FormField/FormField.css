@@ -1,0 +1,54 @@
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--color-surface);
+    color: var(--color-text);                /* ensures all inner text inherits white */
+    border: 1px solid var(--color-border-light);
+    border-radius: 10px;
+}
+
+.form-field {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 10px;
+    overflow: hidden; /* also prevents boundary overflow */
+}
+
+/* Legend / Label */
+.form-field legend,
+.form-field label {
+    font-size: 12px;
+    color: var(--color-text-muted);          /* soft contrast for labels */
+}
+
+/* Inputs & textareas */
+.form-field input,
+.form-field textarea,
+.form-field select {
+    border: none;
+    background: transparent;                 /* transparent to show section background */
+    color: var(--color-text);                /* <— white text */
+    border-radius: 8px;
+    font-size: 13px;
+    resize: vertical;
+    line-height: 1.4;
+}
+
+/* Focused inputs */
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    outline: none;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(79, 139, 255, 0.25);
+    color: var(--color-text);                /* keep text white even when focused */
+}
+
+/* Placeholder text (muted) */
+.form-field input::placeholder,
+.form-field textarea::placeholder,
+.form-field select::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}

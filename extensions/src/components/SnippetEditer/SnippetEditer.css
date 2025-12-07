@@ -1,0 +1,344 @@
+.snippet-editor {
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    align-items: stretch;
+    color: var(--color-text);
+    width: 100%;
+    max-width: 100%;
+    gap: 12px;
+}
+
+.snippet-editor > * {
+    min-width: 0;
+}
+
+.snippet-editor h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: var(--color-text);
+}
+
+.form-section h3 {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 4px;
+}
+
+.textarea-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+.textarea-container label {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+}
+
+.textarea-container textarea {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 13px;
+    padding: 8px;
+    resize: vertical;
+}
+
+.textarea-container textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(79, 139, 255, 0.25);
+}
+
+/* Button Row */
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.save-btn,
+.cancel-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.save-btn {
+    background: var(--gradient-primary);
+    color: #fff;
+}
+
+.save-btn:hover {
+    background: var(--color-primary);
+}
+
+.cancel-btn {
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+}
+
+.cancel-btn:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.status-text {
+    text-align: right;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+
+.header-favicon {
+    height: 20px;
+    width: auto;
+    object-fit: contain;
+    transform: scale(1.6);
+    transform-origin: left center;
+    margin-left: -2px;
+}
+
+.metadata-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--color-surface);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    margin-top: .5rem;
+    text-align: left;
+}
+
+/* acts like a legend/title for this section */
+.metadata-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 4px;
+}
+
+/* Each metadata row */
+.metadata-section .meta-item {
+    display: flex;
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.metadata-section .meta-item strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+
+
+/* Layout container */
+.snippet-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+/* VIEW MODE HEADER */
+.snippet-view-header {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.snippet-view-tags {
+    display: flex;
+    gap: .5rem;
+}
+
+/* FORM FIELDS */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.field input {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.field input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(79, 139, 255, 0.25);
+}
+
+/* TWO COLUMN GRID */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* CODE EDITOR BLOCK */
+.code-editor-wrapper {
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    max-height: 300px;
+    overflow: scroll;
+}
+
+/* STATUS */
+.status-text {
+    margin-top: 6px;
+    text-align: right;
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+/* VIEW MODE CONTAINER */
+.snippet-view-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.snippet-view-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+    max-width: 100%;
+}
+
+.snippet-view-tags {
+    display: flex;
+    gap: .5rem;
+}
+
+/* Favicon + Title row */
+.snippet-view-header-row {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.snippet-view-favicon-wrapper {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.snippet-favicon-column {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Image scales independently */
+.snippet-view-favicon {
+    width: 28px;
+    height: 28px;
+    transform: scale(2.0);
+    transform-origin: center center;
+    object-fit: contain;
+    display: block;
+}
+
+/* 2-column layout */
+.snippet-view-header-grid {
+    display: grid;
+    grid-template-columns: 90px 1fr; /* left fixed, right flexible */
+    gap: 1.25rem;
+    align-items: center;
+}
+
+/* LEFT COLUMN - Favicon */
+.snippet-favicon-column {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* RIGHT COLUMN */
+.snippet-text-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+/* Tags */
+.snippet-view-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+/* Content wrapper */
+.snippet-view-content {
+    border-radius: 7px;
+    border: 1px solid var(--color-border);
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.language-tag {
+    background: #F7D154;
+    color: #1A1A1A;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.tag-chip {
+    padding: 4px 10px;
+    background: #2A2A2A;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--color-text);
+}
+

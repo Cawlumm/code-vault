@@ -1,0 +1,30 @@
+.code-editor {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.cm-editor {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.cm-scroller {
+    overflow-x: hidden !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.cm-content {
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+
+.cm-line {
+    max-width: 100%;
+}

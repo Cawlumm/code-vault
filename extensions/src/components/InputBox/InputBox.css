@@ -1,0 +1,62 @@
+.input-box {
+    position: relative;
+    width: 100%;
+    border: 1.6px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.35rem 0.75rem 0.25rem 0.75rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    background-color: var(--color-surface);
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-sizing: border-box;
+}
+
+/* Focused (active) input box */
+.input-box.focused {
+    border-image: var(--gradient-primary) 1; /* gradient border */
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(79, 139, 255, 0.3);
+    background-color: var(--color-surface);
+}
+
+/* Input field */
+.input-field {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--color-text);
+    line-height: 1.5;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* Label text */
+.input-label {
+    padding: 0 0.3rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: color 0.25s ease;
+}
+
+/* When input is focused */
+.input-box.focused .input-label {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Optional placeholder tint */
+.input-field::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.6;
+}
+
+/* Optional subtle hover effect */
+.input-box:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(79, 139, 255, 0.15);
+}

@@ -1,0 +1,59 @@
+### General ###
+**/node_modules/
+dist/
+build/
+coverage/
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+### Logs ###
+*.log
+logs/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+*.tmp
+*.out
+hs_err_pid*
+
+### Maven ###
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Spring Boot ###
+*.springBeans
+.sts4-cache
+
+### Vite / React ###
+*.cache
+*.eslintcache
+*.tsbuildinfo
+vite.config.ts.timestamp-*
+**/.vite/
+
+### Extension Workspace ###
+extensions/**/dist/
+extensions/**/.vite/
+extensions/**/coverage/
+extensions/**/.env
+extensions/**/.env.local
+extensions/**/.env.*.local
+extensions/**/npm-debug.log*
+extensions/**/yarn-debug.log*
+extensions/**/yarn-error.log*

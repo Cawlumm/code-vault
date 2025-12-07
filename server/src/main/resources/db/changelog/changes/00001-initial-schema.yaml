@@ -1,0 +1,293 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001-create-extension-uuid-ossp
+      author: codevault
+      changes:
+        - sql:
+            comment: Ensure uuid_generate_v4() exists
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+      rollback:
+        - sql: DROP EXTENSION IF EXISTS "uuid-ossp";
+
+  - changeSet:
+      id: 0002-create-extension-pg_trgm
+      author: codevault
+      changes:
+        - sql:
+            comment: Enable trigram extension (needed for fuzzy search)
+            sql: CREATE EXTENSION IF NOT EXISTS pg_trgm;
+      rollback:
+        - sql: DROP EXTENSION IF EXISTS pg_trgm;
+
+  - changeSet:
+      id: 0003-create-user-account-table
+      author: codevault
+      changes:
+        - createTable:
+            tableName: user_account
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_user_account
+                    nullable: false
+              - column:
+                  name: email
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password_hash
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: display_name
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: user_account
+            columnNames: email
+            constraintName: uq_user_account_email
+        - addDefaultValue:
+            tableName: user_account
+            columnName: id
+            defaultValueComputed: uuid_generate_v4()
+        - addDefaultValue:
+            tableName: user_account
+            columnName: created_at
+            defaultValueComputed: now()
+
+      rollback:
+        - dropTable:
+            tableName: user_account
+            cascadeConstraints: true
+
+  - changeSet:
+      id: 0004-create-snippet-table
+      author: codevault
+      changes:
+        - createTable:
+            tableName: snippet
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_snippet
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: body
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: language
+                  type: TEXT
+              - column:
+                  name: meta
+                  type: JSONB
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+
+        - addDefaultValue:
+            tableName: snippet
+            columnName: id
+            defaultValueComputed: uuid_generate_v4()
+        - addDefaultValue:
+            tableName: snippet
+            columnName: created_at
+            defaultValueComputed: now()
+        - addDefaultValue:
+            tableName: snippet
+            columnName: updated_at
+            defaultValueComputed: now()
+
+        - addForeignKeyConstraint:
+            baseTableName: snippet
+            baseColumnNames: user_id
+            constraintName: fk_snippet_user
+            referencedTableName: user_account
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+      rollback:
+        - dropTable:
+            tableName: snippet
+            cascadeConstraints: true
+
+  - changeSet:
+      id: 0005-create-tag-table
+      author: codevault
+      changes:
+        - createTable:
+            tableName: tag
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_tag
+                    nullable: false
+              - column:
+                  name: name
+                  type: TEXT
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: tag
+            columnNames: name
+            constraintName: uq_tag_name
+        - addDefaultValue:
+            tableName: tag
+            columnName: id
+            defaultValueComputed: uuid_generate_v4()
+
+      rollback:
+        - dropTable:
+            tableName: tag
+            cascadeConstraints: true
+
+  - changeSet:
+      id: 0006-create-snippet-tag-table
+      author: codevault
+      changes:
+        - createTable:
+            tableName: snippet_tag
+            columns:
+              - column:
+                  name: snippet_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tag_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: snippet_tag
+            columnNames: snippet_id, tag_id
+            constraintName: pk_snippet_tag
+
+        - addForeignKeyConstraint:
+            baseTableName: snippet_tag
+            baseColumnNames: snippet_id
+            referencedTableName: snippet
+            referencedColumnNames: id
+            constraintName: fk_snippet_tag_snippet
+            onDelete: CASCADE
+
+        - addForeignKeyConstraint:
+            baseTableName: snippet_tag
+            baseColumnNames: tag_id
+            referencedTableName: tag
+            referencedColumnNames: id
+            constraintName: fk_snippet_tag_tag
+            onDelete: CASCADE
+
+      rollback:
+        - dropTable:
+            tableName: snippet_tag
+            cascadeConstraints: true
+
+  - changeSet:
+      id: 0007-create-indexes
+      author: codevault
+      changes:
+        - sql:
+            comment: "Full-text search index over title + body"
+            sql: |
+              CREATE INDEX IF NOT EXISTS idx_snippet_fts
+              ON snippet
+              USING GIN (to_tsvector('english', coalesce(title,'') || ' ' || coalesce(body,'')));
+
+        - sql:
+            comment: "Trigram index for fuzzy title search"
+            sql: |
+              CREATE INDEX IF NOT EXISTS idx_snippet_title_trgm
+              ON snippet
+              USING GIN (title gin_trgm_ops);
+
+      rollback:
+        - sql:
+            sql: |
+              DROP INDEX IF EXISTS idx_snippet_fts;
+              DROP INDEX IF EXISTS idx_snippet_title_trgm;
+
+  - changeSet:
+      id: 0008-add-favicon-url-to-snippet
+      author: codevault
+      changes:
+        - addColumn:
+            tableName: snippet
+            columns:
+              - column:
+                  name: favicon_url
+                  type: TEXT
+                  constraints:
+                    nullable: true
+
+      rollback:
+        - dropColumn:
+            tableName: snippet
+            columnName: favicon_url
+
+  - changeSet:
+      id: 0009-add-server-url-to-user-account
+      author: codevault
+      changes:
+        - addColumn:
+            tableName: user_account
+            columns:
+              - column:
+                  name: server_url
+                  type: TEXT
+                  constraints:
+                    nullable: true
+        - dropUniqueConstraint:
+            tableName: user_account
+            constraintName: uq_user_account_email
+        - addUniqueConstraint:
+            tableName: user_account
+            columnNames: email, server_url
+            constraintName: uq_user_account_email_serverurl
+
+      rollback:
+        - dropUniqueConstraint:
+            tableName: user_account
+            constraintName: uq_user_account_email_serverurl
+        - addUniqueConstraint:
+            tableName: user_account
+            columnNames: email
+            constraintName: uq_user_account_email
+        - dropColumn:
+            tableName: user_account
+            columnName: server_url

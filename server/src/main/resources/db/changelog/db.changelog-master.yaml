@@ -1,0 +1,5 @@
+# src/main/resources/db/changelog/db.changelog-master.yaml
+databaseChangeLog:                       # runs only when 'dev' context is active
+  - include:
+      file: changes/00001-initial-schema.yaml
+      relativeToChangelogFile: true
